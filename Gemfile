@@ -16,7 +16,7 @@ gem 'puma', '~> 3.11'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # Windows Postgres required to add
-gem 'wdm', '>= 0.1.0'
+# gem 'wdm', '>= 0.1.0'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
