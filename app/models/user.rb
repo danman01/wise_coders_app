@@ -7,4 +7,6 @@ class User < ActiveRecord::Base
 
   has_many :user_code_schools, dependent: :destroy
   has_many :code_schools, through: :user_code_schools
+  has_many :user_interests, dependent: :destroy
+  has_many :interests, through: :user_interests
 end
