@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_14_205758) do
+ActiveRecord::Schema.define(version: 2019_02_14_214548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,12 @@ ActiveRecord::Schema.define(version: 2019_02_14_205758) do
   create_table "code_schools", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "interests", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -33,6 +39,19 @@ ActiveRecord::Schema.define(version: 2019_02_14_205758) do
     t.datetime "updated_at", null: false
     t.index ["code_school_id"], name: "index_user_code_schools_on_code_school_id"
     t.index ["user_id"], name: "index_user_code_schools_on_user_id"
+  end
+
+  create_table "user_interests", force: :cascade do |t|
+    t.bigint "interest_id"
+    t.bigint "user_id"
+    t.text "experience"
+    t.integer "expertise"
+    t.boolean "want_to_teach"
+    t.boolean "want_to_learn"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["interest_id"], name: "index_user_interests_on_interest_id"
+    t.index ["user_id"], name: "index_user_interests_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -72,4 +91,6 @@ ActiveRecord::Schema.define(version: 2019_02_14_205758) do
 
   add_foreign_key "user_code_schools", "code_schools"
   add_foreign_key "user_code_schools", "users"
+  add_foreign_key "user_interests", "interests"
+  add_foreign_key "user_interests", "users"
 end

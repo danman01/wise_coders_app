@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :user_interests
+  resources :interests
   resources :user_code_schools
   resources :code_schools
   mount_devise_token_auth_for 'User', at: 'auth'
