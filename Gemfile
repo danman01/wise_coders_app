@@ -41,6 +41,10 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+# token auth
+gem 'devise_token_auth', '~> 0.1.4'
+# auth using various oauth2 providers
+gem 'omniauth', '~> 1.9'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
