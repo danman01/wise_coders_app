@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_22_014250) do
+ActiveRecord::Schema.define(version: 2019_02_22_021030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,20 @@ ActiveRecord::Schema.define(version: 2019_02_22_014250) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "event_happenings", force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "happening_id"
+    t.bigint "user_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_happenings_on_event_id"
+    t.index ["happening_id"], name: "index_event_happenings_on_happening_id"
+    t.index ["user_id"], name: "index_event_happenings_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -129,6 +143,9 @@ ActiveRecord::Schema.define(version: 2019_02_22_014250) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "event_happenings", "events"
+  add_foreign_key "event_happenings", "happenings"
+  add_foreign_key "event_happenings", "users"
   add_foreign_key "happening_interests", "happenings"
   add_foreign_key "happening_interests", "interests"
   add_foreign_key "happenings", "users"
