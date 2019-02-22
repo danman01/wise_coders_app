@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :user_events
+  resources :events
   resources :user_interests
   resources :interests
   resources :user_code_schools
