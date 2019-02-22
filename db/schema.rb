@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_22_013841) do
+ActiveRecord::Schema.define(version: 2019_02_22_014250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 2019_02_22_013841) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "happening_interests", force: :cascade do |t|
+    t.bigint "happening_id"
+    t.bigint "interest_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["happening_id"], name: "index_happening_interests_on_happening_id"
+    t.index ["interest_id"], name: "index_happening_interests_on_interest_id"
   end
 
   create_table "happenings", force: :cascade do |t|
@@ -120,6 +129,8 @@ ActiveRecord::Schema.define(version: 2019_02_22_013841) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "happening_interests", "happenings"
+  add_foreign_key "happening_interests", "interests"
   add_foreign_key "happenings", "users"
   add_foreign_key "user_code_schools", "code_schools"
   add_foreign_key "user_code_schools", "users"
