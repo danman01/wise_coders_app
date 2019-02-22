@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_22_021030) do
+ActiveRecord::Schema.define(version: 2019_02_22_024706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,22 @@ ActiveRecord::Schema.define(version: 2019_02_22_021030) do
     t.index ["event_id"], name: "index_event_happenings_on_event_id"
     t.index ["happening_id"], name: "index_event_happenings_on_happening_id"
     t.index ["user_id"], name: "index_event_happenings_on_user_id"
+  end
+
+  create_table "event_repeats", force: :cascade do |t|
+    t.bigint "event_id"
+    t.integer "days_of_week", array: true
+    t.integer "weeks_of_month", array: true
+    t.integer "months_of_year", array: true
+    t.datetime "repeat_start_date"
+    t.datetime "repeat_end_date"
+    t.integer "number_of_repeats"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["days_of_week"], name: "index_event_repeats_on_days_of_week", using: :gin
+    t.index ["event_id"], name: "index_event_repeats_on_event_id"
+    t.index ["months_of_year"], name: "index_event_repeats_on_months_of_year", using: :gin
+    t.index ["weeks_of_month"], name: "index_event_repeats_on_weeks_of_month", using: :gin
   end
 
   create_table "events", force: :cascade do |t|
@@ -146,6 +162,7 @@ ActiveRecord::Schema.define(version: 2019_02_22_021030) do
   add_foreign_key "event_happenings", "events"
   add_foreign_key "event_happenings", "happenings"
   add_foreign_key "event_happenings", "users"
+  add_foreign_key "event_repeats", "events"
   add_foreign_key "happening_interests", "happenings"
   add_foreign_key "happening_interests", "interests"
   add_foreign_key "happenings", "users"

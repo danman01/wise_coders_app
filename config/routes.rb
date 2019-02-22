@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :event_repeats
   resources :event_happenings
   resources :happening_interests
   resources :happenings
