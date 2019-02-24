@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-class User < ApplicationRecord
-=======
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -12,5 +9,4 @@ class User < ActiveRecord::Base
   has_many :code_schools, through: :user_code_schools
   has_many :user_interests, dependent: :destroy
   has_many :interests, through: :user_interests
->>>>>>> ff735738ccacbafe5537d0c07afeb71deb2b7e80
 end

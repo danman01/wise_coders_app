@@ -10,25 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2019_02_10_031720) do
-=======
 ActiveRecord::Schema.define(version: 2019_02_14_214548) do
->>>>>>> ff735738ccacbafe5537d0c07afeb71deb2b7e80
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-<<<<<<< HEAD
-  create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "password"
-    t.string "auth_token"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-=======
   create_table "code_schools", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -107,5 +93,4 @@ ActiveRecord::Schema.define(version: 2019_02_14_214548) do
   add_foreign_key "user_code_schools", "users"
   add_foreign_key "user_interests", "interests"
   add_foreign_key "user_interests", "users"
->>>>>>> ff735738ccacbafe5537d0c07afeb71deb2b7e80
 end
