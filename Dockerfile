@@ -1,4 +1,4 @@
-FROM ruby:2.5-slim
+FROM ruby:2.5.0
 
 LABEL Name=wise_coders_app Version=0.0.1
 EXPOSE 3000
@@ -10,7 +10,7 @@ WORKDIR /app
 COPY . /app
 
 COPY Gemfile Gemfile.lock ./
-RUN bundle install
+RUN gem install bundler 
 
-CMD ["ruby", "wise_coders_app.rb"]
+CMD ["ruby", "devise.rb"]
     
